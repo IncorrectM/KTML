@@ -9,8 +9,8 @@ class HTML: BaseElement("html") {
         return body
     }
 
-    fun head(block: Head.() -> Unit): Head {
-        val head = Head().apply {
+    fun head(title: String, block: Head.() -> Unit): Head {
+        val head = Head(title).apply {
             this.block()
         }
         this.append(head)

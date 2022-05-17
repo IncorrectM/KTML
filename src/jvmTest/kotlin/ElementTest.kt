@@ -27,7 +27,7 @@ class ElementTest {
     @Test
     fun `test building html element`() {
         val htmlContent = html {
-            head {
+            head(title = "html test") {
                 comment("设置元数据")
                 meta("keywords", "Basic Page")
                 meta("UTF-8")
@@ -36,7 +36,19 @@ class ElementTest {
 
             }
         }
-        assertEquals(" ", htmlContent.render())
+        assertEquals(
+            """ #<html>
+                #    <head>
+                #        <title>
+                #            html test
+                #        </title>
+                #        <!-- 设置元数据 -->
+                #        <meta name="keywords" content="Basic Page">
+                #        <meta charset="UTF-8">
+                #    </head>
+                #    <body>    </body>
+                #</html>""".trimMargin("#")
+            , htmlContent.render())
     }
 
     @Test

@@ -36,7 +36,7 @@ open class BaseElement(private val tagName: String, var innerText: String = "") 
         builder.append("<$tagName")
         // set attributes
         attribute.forEach { (key, value) ->
-            builder.append(""" ${key}="$value"""")
+            builder.append(" ${key}=\"$value\"")
         }
         builder.append(">")
 
@@ -50,14 +50,12 @@ open class BaseElement(private val tagName: String, var innerText: String = "") 
         }
 
         // innerText is appended after children elements
-        if (innerText != "")
-        builder.append(indentString).append(innerText).append("\n")
+        if (innerText != "") {
+            builder.append("\n").append(buildIndent(indent + 4)).append(innerText).append("\n")
+        }
 
         // end a tag
-        if (children.size > 0) {
-            builder.append(indentString)
-        }
-        builder.append("</${tagName}>")
+        builder.append(indentString).append("</${tagName}>")
 
         return builder.toString()
 

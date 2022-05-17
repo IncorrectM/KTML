@@ -2,7 +2,10 @@ package tech.zzhaodev.ktml.element
 
 import tech.zzhaodev.ktml.element.single.Meta
 
-class Head: BaseElement("head") {
+class Head(private val pageTitle: String): BaseElement("head") {
+    init {
+        append(BaseElement("title", pageTitle))
+    }
     fun meta(name: String, content: String) : Meta {
         val meta = Meta()
         meta.apply {
